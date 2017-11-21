@@ -177,6 +177,51 @@ if let upper = jack.residence?.address?.buildingIdentifier()?.uppercased() {
 }
 
 
+// MARK: - Tips
+/*
+  使用 Optional Chaining 可以让我们摆脱很多不必要的判断和取值，但是在使用的时候需要小心陷阱
+ */
+
+class Toy {
+    let name: String
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class Pet {
+    var toy: Toy?
+}
+
+class Child {
+    var pet: Pet?
+}
+
+var xiaoming = Child()
+if let toyName = xiaoming.pet?.toy?.name {
+    print(toyName)
+}
+
+extension Toy {
+    func play() {
+        
+    }
+}
+
+xiaoming.pet?.toy?.play()
+
+let playClosure = {(child: Child) -> ()? in child.pet?.toy?.play()}
+
+if let _:() = playClosure(xiaoming) {
+    print("好开心")
+}else {
+    print("没有玩具可以玩")
+
+}
+
+
+
+
 
 
 
